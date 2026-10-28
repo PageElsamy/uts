@@ -8,16 +8,21 @@ class Start extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                
-              ],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                color: Colors.white,
+                child: Image.asset(
+                  'gambar/TakeAway-pana.png',
+                  fit: BoxFit.contain
+                ),
+              )
             )
-          ],
+          ]
         ),
-      ),
+      )
     );
   }
 }
