@@ -43,23 +43,46 @@ class Menu extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-          GridView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            shrinkWrap: true,
-            physics: AlwaysScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              mainAxisSpacing: 12,
-              mainAxisExtent: 130,
+          _title(),
+          _menu()
+        ],
+      ),
+    );
+  }
+
+  Padding _title() {
+    return Padding(
+          padding: EdgeInsetsGeometry.fromLTRB(30, 30, 16, 10),
+          child: Text(
+            "Menu",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 50,
             ),
-            itemCount: dummyOrders.length,
-            itemBuilder: (context, index) {
-              final order = dummyOrders[index];
-              return Container(
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    ClipRRect(
+          ),
+        );
+  }
+
+  GridView _menu() {
+    return GridView.builder(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          shrinkWrap: true,
+          physics: AlwaysScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
+            mainAxisSpacing: 12,
+            mainAxisExtent: 130,
+          ),
+          itemCount: dummyOrders.length,
+          itemBuilder: (context, index) {
+            final order = dummyOrders[index];
+            return Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                    child: ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(15),
                       child: Image.network(
                         order['imageUrl'],
@@ -68,52 +91,86 @@ class Menu extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "#${order['category']}",
-                            style: TextStyle(
-                              color: Colors.orange,
-                              fontSize: 15,
-                            ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "#${order['category']}",
+                          style: TextStyle(
+                            color: Colors.orange,
+                            fontSize: 15,
                           ),
-                          SizedBox(height: 3),
-                          Text(
-                            order['title'],
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          order['title'],
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
                           ),
-                          SizedBox(height: 3),
-                          Text(
-                            "ID: ${order['id']}",
-                            style: TextStyle(
-                              color: Colors.grey[500],
-                              fontSize: 15,
-                            ),
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          "ID: ${order['id']}",
+                          style: TextStyle(
+                            color: Colors.grey[500],
+                            fontSize: 15,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "$ ${order['price']}"
-                              )
-                            ],
-                          )
-                        ],
-                      )
+                        ),
+                        SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "\$ ${order['price']}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    backgroundColor: Colors.orange,
+                                    foregroundColor: Colors.white,
+                                  ),
+                                  onPressed: (){}, 
+                                  child: Text("Done")
+                                ),
+                                SizedBox(width: 12),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      side: BorderSide(
+                                        color: Colors.orange,
+                                        width: 1,
+                                      )
+                                    ),
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.orange,
+                                  ),
+                                  onPressed: (){}, 
+                                  child: Text("Cancel")
+                                )
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
                     )
-                  ],
-                ),
-              );
-            },
-          )
-        ],
-      ),
-    );
+                  )
+                ],
+              ),
+            );
+          },
+        );
   }
 }
