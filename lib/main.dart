@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uts/pages/start.dart';
+import 'package:uts/pages/menu.dart';
+// import 'package:uts/pages/start.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Start(),
+      home: Menu(),
     );
   }
 }
